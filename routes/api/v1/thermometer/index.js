@@ -1,17 +1,53 @@
 'use strict'
-const getSchema = require('./get.thermometer.schema.json')
 
-const options = {
-  schema: getSchema
+const getOptions = {
+  schema: {
+    querystring: {
+      type: 'object',
+      required: ['city', 'operator', 'temperature'],
+      properties: {
+        city: {
+          type: 'string'
+        },
+        operator: {
+          type: 'string',
+          pattern: '^\\$(lt|lte|eq|gt|gte)'
+        },
+        temperature: {
+          type: 'integer'
+        }
+      }
+    },
+    response: {
+      200: {
+        type: 'object',
+        properties: {
+          data: {
+            type: 'boolean'
+          }
+        }
+      },
+      default: {
+        statusCode: {
+          type: 'integer'
+        },
+        error: {
+          type: 'string'
+        },
+        message: {
+          type: 'string'
+        }
+      }
+    }
+  }
 }
 
 module.exports = async function (fastify, opts) {
-  fastify.get('/', options,  async (request, reply) => {
-
+  fastify.get('/', getOptions, async (request, reply) => {
     const { city, operator, temperature } = request.query
 
-    let result = await fastify.thermometerService.isTemp(city, operator, temperature)
+    const result = await fastify.thermometerService.isTemp(city, operator, temperature)
 
-    return { data: result }
+    reply.send({ data: result })
   })
 }

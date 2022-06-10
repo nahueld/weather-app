@@ -3,18 +3,16 @@ const fp = require('fastify-plugin')
 const ApiError = require('../utils/api-error')
 const ERRORS = require('../utils/errors.json')
 class ThermometerService {
-
-  constructor(db, client, opts) {
+  constructor (db, client, opts) {
     this.opts = opts
     this.db = db
     this.client = client
   }
 
-  async isTemp(city, operator, temperature) {
-
+  async isTemp (city, operator, temperature) {
     const data = this.db.get('cities').find({ identifier: city }).value()
 
-    if(!data) throw new ApiError(ERRORS.CITY_NOT_FOUND)
+    if (!data) throw new ApiError(ERRORS.CITY_NOT_FOUND)
 
     const { lat, lon } = data
 
@@ -29,14 +27,14 @@ class ThermometerService {
         units: 'metric'
       }
     })
-    .catch((error) => {
-      const { status, statusText } = error.response
-      throw new ApiError({ statusCode: status, error: statusText, ...ERRORS.OPEN_WEATHER_ISSUE })
-    })
+      .catch((error) => {
+        const { status, statusText } = error.response
+        throw new ApiError({ statusCode: status, error: statusText, ...ERRORS.OPEN_WEATHER_ISSUE })
+      })
 
     const { current: { temp: currentTemp } } = response.data
 
-    switch(operator) {
+    switch (operator) {
       case '$lt': {
         return currentTemp < temperature
       }
@@ -56,15 +54,12 @@ class ThermometerService {
         return false
     }
   }
-
 }
 
- module.exports = fp(async function (fastify, opts) {
-
-  if(!fastify.db) throw new Error('DB is not initialized')
+module.exports = fp(async function (fastify, opts) {
+  if (!fastify.db) throw new Error('DB is not initialized')
 
   const thermometerService = new ThermometerService(fastify.db, fastify.axios, opts)
 
   fastify.decorate('thermometerService', thermometerService)
 })
-
