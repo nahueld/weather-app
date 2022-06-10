@@ -1,0 +1,39 @@
+{
+  "querystring": {
+    "type": "object",
+    "required": ["city", "comparator", "temperature"],
+    "properties": {
+      "city": {
+        "type": "string"
+      },
+      "comparator": {
+        "type": "string",
+        "pattern": "^\\\\$(lt|lte|eq|gt|gte)"
+      },
+      "temperature": {
+        "type": "integer"
+      }
+    }
+  },
+  "response": {
+    "200": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "boolean"
+        }
+      }
+    },
+    "default": {
+      "statusCode": {
+        "type": "integer"
+      },
+      "error": {
+        "type": "string"
+      },
+      "message": {
+        "type": "string"
+      }
+    }
+  }
+}
