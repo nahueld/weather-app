@@ -7,6 +7,11 @@ const options = {
 
 module.exports = async function (fastify, opts) {
   fastify.get('/', options,  async (request, reply) => {
-    return { type: true, fafa: false, data: true }
+
+    const { city, operator, temperature } = request.query
+
+    let result = await fastify.thermometerService.isTemp(city, operator, temperature)
+
+    return { data: result }
   })
 }

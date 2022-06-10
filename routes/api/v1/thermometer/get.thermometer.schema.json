@@ -1,14 +1,14 @@
 {
   "querystring": {
     "type": "object",
-    "required": ["city", "comparator", "temperature"],
+    "required": ["city", "operator", "temperature"],
     "properties": {
       "city": {
         "type": "string"
       },
-      "comparator": {
+      "operator": {
         "type": "string",
-        "pattern": "^\\\\$(lt|lte|eq|gt|gte)"
+        "pattern": "^\\$(lt|lte|eq|gt|gte)"
       },
       "temperature": {
         "type": "integer"

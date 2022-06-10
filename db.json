@@ -1,8 +1,7 @@
 {
   "cities": [{
-    "lat": 0,
-    "long": 0,
-    "identifier": "rio-cuarto",
-    "label": "Río Cuarto"
+    "lat": -33.13067,
+    "lon": -64.34992,
+    "identifier": "rio-cuarto"
   }]
 }

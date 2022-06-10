@@ -1,0 +1,10 @@
+{
+  "CITY_NOT_FOUND": {
+    "statusCode": 404,
+    "error": "Not Found",
+    "message": "City not found"
+  },
+  "OPEN_WEATHER_ISSUE": {
+    "message": "Failed to fetch data from Open Weather"
+  }
+}
