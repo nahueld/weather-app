@@ -182,4 +182,19 @@ describe('cache', () => {
       expect(reply.header).toHaveBeenNthCalledWith(2, 'etag', expect.stringMatching(/.{24}/))
     })
   })
+
+  describe('cachePlugin', () => {
+    it('hooks are successfully added', () => {
+      const fastify = {
+        addHook: jest.fn()
+      }
+      const options = {
+        CACHE_MAX_AGE: 10
+      }
+
+      cachePlugin(fastify, options)
+
+      expect(fastify.addHook).toHaveBeenCalledTimes(2)
+    })
+  })
 })
