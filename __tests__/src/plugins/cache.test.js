@@ -178,7 +178,7 @@ describe('cache', () => {
       expect(reply.header)
         .toHaveBeenCalledTimes(2)
 
-      expect(reply.header).toHaveBeenNthCalledWith(1, 'cache-control', `max-age=${maxAge} s-maxage=${maxAge} public`)
+      expect(reply.header).toHaveBeenNthCalledWith(1, 'cache-control', `max-age=${maxAge},s-maxage=${maxAge},public`)
       expect(reply.header).toHaveBeenNthCalledWith(2, 'etag', expect.stringMatching(/.{24}/))
     })
   })

@@ -10,7 +10,7 @@ function onRequest (cache) {
 
     const cacheControl = request.headers['cache-control'] || String()
 
-    const cacheControlOpts = cacheControl.split(' ')
+    const cacheControlOpts = cacheControl.split(',').map(c => c.trim())
 
     if (cacheControlOpts.includes('no-cache')) {
       return next()
@@ -48,7 +48,7 @@ function onSend (cache, maxAge) {
 
     cache.set(eTag, payload)
 
-    reply.header('cache-control', `max-age=${maxAge} s-maxage=${maxAge} public`)
+    reply.header('cache-control', `max-age=${maxAge},s-maxage=${maxAge},public`)
     reply.header('etag', eTag)
 
     next()
