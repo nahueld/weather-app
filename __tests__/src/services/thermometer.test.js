@@ -172,7 +172,6 @@ describe('thermometer', () => {
         try {
           await service.checkTemperature('abc', '$in', 1)
         } catch (err) {
-          console.log(err)
           fault = err
         }
 
