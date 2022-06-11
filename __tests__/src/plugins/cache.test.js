@@ -195,6 +195,9 @@ describe('cache', () => {
       cachePlugin(fastify, options)
 
       expect(fastify.addHook).toHaveBeenCalledTimes(2)
+
+      expect(fastify.addHook).toHaveBeenNthCalledWith(1, 'onRequest', expect.any(Function))
+      expect(fastify.addHook).toHaveBeenNthCalledWith(2, 'onSend', expect.any(Function))
     })
   })
 })
