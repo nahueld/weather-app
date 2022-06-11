@@ -46,7 +46,7 @@ module.exports = async function (fastify, opts) {
   fastify.get('/', getOptions, async (request, reply) => {
     const { city, operator, temperature } = request.query
 
-    const result = await fastify.thermometerService.isTemp(city, operator, temperature)
+    const result = await fastify.thermometerService.checkTemperature(city, operator, temperature)
 
     reply.send({ data: result })
   })

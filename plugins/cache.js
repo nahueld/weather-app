@@ -4,7 +4,7 @@ const fp = require('fastify-plugin')
 const NodeCache = require('node-cache')
 
 /**
- * This plugins adds public cache to the responses of the microservice
+ * This plugins returns cached response from the only available route
  */
 module.exports = fp(async function (fastify, opts) {
   const { CACHE_MAX_AGE: maxAge } = opts

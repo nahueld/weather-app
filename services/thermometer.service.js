@@ -9,7 +9,7 @@ class ThermometerService {
     this.client = client
   }
 
-  async isTemp (city, operator, temperature) {
+  async checkTemperature (city, operator, temperature) {
     const data = this.db.get('cities').find({ identifier: city }).value()
 
     if (!data) throw new ApiError(ERRORS.CITY_NOT_FOUND)
