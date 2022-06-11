@@ -14,7 +14,7 @@ const getOptions = {
           pattern: '^\\$(lt|lte|eq|gt|gte)'
         },
         temperature: {
-          type: 'integer'
+          type: 'number'
         }
       }
     },

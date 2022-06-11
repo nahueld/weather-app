@@ -1,7 +1,14 @@
 {
-  "cities": [{
-    "lat": -33.13067,
-    "lon": -64.34992,
-    "identifier": "rio-cuarto"
-  }]
+  "cities": [
+    {
+      "lat": -33.13067,
+      "lon": -64.34992,
+      "identifier": "rio-cuarto"
+    },
+    {
+      "lat": -31.416668,
+      "lon": -64.183334,
+      "identifier": "cordoba"
+    }
+  ]
 }

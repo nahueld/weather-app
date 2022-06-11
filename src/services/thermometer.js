@@ -3,10 +3,11 @@ const fp = require('fastify-plugin')
 const ApiError = require('../utils/api-error')
 const ERRORS = require('../utils/errors.json')
 class ThermometerService {
-  constructor (db, client, opts) {
+  constructor (fastify, opts) {
     this.opts = opts
-    this.db = db
-    this.client = client
+    this.db = fastify.db
+    this.client = fastify.axios
+    this.log = fastify.log
   }
 
   async checkTemperature (city, operator, temperature) {
@@ -35,6 +36,8 @@ class ThermometerService {
 
     const { current: { temp: currentTemp } } = response.data
 
+    this.log.info(`Current temp is: ${currentTemp}`)
+
     switch (operator) {
       case '$lt': {
         return currentTemp < temperature
@@ -60,7 +63,7 @@ class ThermometerService {
 module.exports = fp(async function (fastify, opts) {
   if (!fastify.db) throw new Error('DB is not initialized')
 
-  const thermometerService = new ThermometerService(fastify.db, fastify.axios, opts)
+  const thermometerService = new ThermometerService(fastify, opts)
 
   fastify.decorate('thermometerService', thermometerService)
 })

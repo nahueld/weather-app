@@ -26,6 +26,7 @@ module.exports = fp(async function (fastify, opts) {
 
     return reply
       .status(200)
+      .header('content-type', 'application/json')
       .send(cachedValue)
   })
 
