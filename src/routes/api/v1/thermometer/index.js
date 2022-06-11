@@ -55,13 +55,7 @@ function getController (fastify) {
 
     const result = await fastify.thermometerService.checkTemperature(city, operator, temperature)
 
-    console.log('result', result)
-
-    console.log(reply.send.mock)
-
     reply.send({ data: result })
-
-    console.log(reply.send.mock)
   }
 }
 
