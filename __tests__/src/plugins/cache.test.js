@@ -1,7 +1,5 @@
 'use strict'
 
-const { test } = require('tap')
-const Reply = require('fastify/lib/reply')
 const { onRequest, onSend, cachePlugin } = require('../../../src/plugins/cache')
 const NodeCache = require('node-cache')
 
