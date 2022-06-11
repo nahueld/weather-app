@@ -49,12 +49,28 @@ const getOptions = {
   }
 }
 
-module.exports = async function (fastify, opts) {
-  fastify.get('/', getOptions, async (request, reply) => {
+function getController (fastify) {
+  return async (request, reply) => {
     const { city, operator, temperature } = request.query
 
     const result = await fastify.thermometerService.checkTemperature(city, operator, temperature)
 
+    console.log('result', result)
+
+    console.log(reply.send.mock)
+
     reply.send({ data: result })
-  })
+
+    console.log(reply.send.mock)
+  }
+}
+
+async function thermometerPlugin (fastify, opts) {
+  fastify.get('/', getOptions, getController(fastify))
+}
+
+module.exports = {
+  default: thermometerPlugin,
+  getOptions,
+  getController
 }
