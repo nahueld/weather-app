@@ -12,7 +12,8 @@ The following assumptions were made:
 1. Clone the repository
 2. Add an `.env` file in the root
 3. Add the following environment variable: `OPEN_WEATHER_API_KEY=abc` (instructions on how to obtain the key down below)
-4. Run the command `npm run dev``
+4. Run `npm install`
+5. Run the command `npm run dev`
 
 To obtain the API Key follow the instructions on the [OpenWeather](https://openweathermap.org/price) website, the Free plan is enough.
 
