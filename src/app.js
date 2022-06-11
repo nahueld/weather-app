@@ -4,7 +4,7 @@ const path = require('path')
 const AutoLoad = require('@fastify/autoload')
 const fastifyEnv = require('@fastify/env')
 const fasitfyAxios = require('fastify-axios')
-const config = require('./config.json')
+const config = require('../config.json')
 
 module.exports = async function (fastify, opts) {
   const autoLoad = autoLoadFactory(fastify, opts)

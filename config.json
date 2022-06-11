@@ -1,6 +1,6 @@
 {
 	"type": "object",
-	"required": ["DB_PATH", "OPEN_WEATHER_API_KEY", "OPEN_WEATHER_URL"],
+	"required": ["OPEN_WEATHER_API_KEY"],
 	"properties": {
 		"DB_PATH": {
 			"type": "string",
