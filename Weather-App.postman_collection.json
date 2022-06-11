@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "f1fdd59e-d17c-4737-9c25-340d019bf716",
+		"name": "Weather App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Thermometer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-None-Match",
+						"value": "e-66Kg1i/Prnika7fkvfgOCHV/pA8",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/thermometer?city=rio-cuarto&operator=$lt&temperature=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"thermometer"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "rio-cuarto"
+						},
+						{
+							"key": "operator",
+							"value": "$lt"
+						},
+						{
+							"key": "temperature",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

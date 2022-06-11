@@ -24,3 +24,12 @@ OPEN_WEATHER_API_KEY=abc //the api key needed to interact with the Open Weather 
 OPEN_WEATHER_URL=https://abc.com //the endpoint to retrieve current temperature
 CACHE_MAX_AGE=1 //the cache configured time in seconds
 ```
+
+## Tests
+To run the tests simply run: `npm run test`
+
+## API Docs
+When running the service access: `http://localhost:3000/documentation` to get access to Swagger documentation
+
+## Postman
+Also find a postman collection with a default query configured
