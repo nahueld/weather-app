@@ -30,8 +30,6 @@ module.exports = fp(async function (fastify, opts) {
   fastify.addHook('onSend', (request, reply, payload, next) => {
     const identifier = Buffer.from(request.url).toString('base64')
 
-    console.log(identifier)
-
     cache.set(identifier, payload)
 
     next()

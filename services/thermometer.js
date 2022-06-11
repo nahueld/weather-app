@@ -16,17 +16,18 @@ class ThermometerService {
 
     const { lat, lon } = data
 
-    const response = await this.client.request({
-      url: this.opts.OPEN_WEATHER_URL,
-      method: 'GET',
-      params: {
-        lat,
-        lon,
-        appid: this.opts.OPEN_WEATHER_API_KEY,
-        exclude: 'minutely,hourly,daily,alerts',
-        units: 'metric'
-      }
-    })
+    const response = await this.client
+      .request({
+        url: this.opts.OPEN_WEATHER_URL,
+        method: 'GET',
+        params: {
+          lat,
+          lon,
+          appid: this.opts.OPEN_WEATHER_API_KEY,
+          exclude: 'minutely,hourly,daily,alerts',
+          units: 'metric'
+        }
+      })
       .catch((error) => {
         const { status, statusText } = error.response
         throw new ApiError({ statusCode: status, error: statusText, ...ERRORS.OPEN_WEATHER_ISSUE })
