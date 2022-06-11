@@ -14,6 +14,8 @@ module.exports = fp(async function (fastify, opts) {
   })
 
   fastify.addHook('onRequest', (request, reply, next) => {
+    if (request.method !== 'GET') return next()
+
     const identifier = Buffer.from(request.url).toString('base64')
 
     const cachedValue = cache.get(identifier)
@@ -28,6 +30,8 @@ module.exports = fp(async function (fastify, opts) {
   })
 
   fastify.addHook('onSend', (request, reply, payload, next) => {
+    if (request.method !== 'GET') return next()
+
     const identifier = Buffer.from(request.url).toString('base64')
 
     cache.set(identifier, payload)
