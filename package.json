@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "tap \"__tests__/**/*.test.js\"",
+    "test": "jest",
     "start": "fastify start -l info src/app.js",
     "dev": "fastify start -w -l info -P src/app.js"
   },
@@ -19,6 +19,7 @@
     "@fastify/env": "^4.0.0",
     "@fastify/sensible": "^4.1.0",
     "@fastify/swagger": "^7.3.0",
+    "eslint-plugin-jest": "^26.5.3",
     "fastify": "^4.0.0-rc.2",
     "fastify-axios": "^1.2.5",
     "fastify-cli": "^4.0.0",
@@ -33,6 +34,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.2",
     "eslint-plugin-promise": "^6.0.0",
+    "jest": "^28.1.1",
     "tap": "^16.1.0"
   }
 }

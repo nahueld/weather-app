@@ -12,15 +12,21 @@ function onRequest (cache) {
 
     const cacheControlOpts = cacheControl.split(' ')
 
-    if (cacheControlOpts.includes('no-cache')) return next()
+    if (cacheControlOpts.includes('no-cache')) {
+      return next()
+    }
 
     const eTag = request.headers['if-none-match']
 
-    if (!eTag) return next()
+    if (!eTag) {
+      return next()
+    }
 
     const cachedValue = cache.get(eTag)
 
-    if (!cachedValue) return next()
+    if (!cachedValue) {
+      return next()
+    }
 
     return reply
       .status(304)
@@ -30,9 +36,13 @@ function onRequest (cache) {
 
 function onSend (cache, maxAge) {
   return (request, reply, payload, next) => {
-    if (request.method !== 'GET') return next()
+    if (request.method !== 'GET') {
+      return next()
+    }
 
-    if (reply.statusCode === 304) return next()
+    if (reply.statusCode === 304) {
+      return next()
+    }
 
     const eTag = uidSafe.sync(18)
 
