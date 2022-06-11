@@ -13,7 +13,9 @@ class ThermometerService {
   async checkTemperature (city, operator, temperature) {
     const data = this.db.get('cities').find({ identifier: city }).value()
 
-    if (!data) throw new ApiError(ERRORS.CITY_NOT_FOUND)
+    if (!data) {
+      throw new ApiError(ERRORS.CITY_NOT_FOUND)
+    }
 
     const { lat, lon } = data
 
@@ -55,15 +57,21 @@ class ThermometerService {
         return currentTemp > temperature
       }
       default:
-        return false
+        throw new ApiError(ERRORS.UNSUPPORTED_OPERATOR)
     }
   }
 }
 
-module.exports = fp(async function (fastify, opts) {
+async function thermometerServicePlugin (fastify, opts) {
   if (!fastify.db) throw new Error('DB is not initialized')
+  if (!fastify.axios) throw new Error('Client is not initialized')
 
   const thermometerService = new ThermometerService(fastify, opts)
 
   fastify.decorate('thermometerService', thermometerService)
-})
+}
+
+module.exports = {
+  ThermometerService,
+  ...fp(thermometerServicePlugin)
+}

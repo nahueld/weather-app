@@ -6,5 +6,10 @@
   },
   "OPEN_WEATHER_ISSUE": {
     "message": "Failed to fetch data from Open Weather"
+  },
+  "UNSUPPORTED_OPERATOR": {
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": "Invalid operator"
   }
 }
