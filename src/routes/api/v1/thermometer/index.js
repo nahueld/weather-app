@@ -2,6 +2,7 @@
 
 const getOptions = {
   schema: {
+    tags: ['thermometer'],
     querystring: {
       type: 'object',
       required: ['city', 'operator', 'temperature'],
@@ -10,6 +11,7 @@ const getOptions = {
           type: 'string'
         },
         operator: {
+          description: 'One of the following: $lt, $lte, $eq, $gte, $gt',
           type: 'string',
           pattern: '^\\$(lt|lte|eq|gt|gte)'
         },
@@ -20,6 +22,7 @@ const getOptions = {
     },
     response: {
       200: {
+        description: 'Successful response',
         type: 'object',
         properties: {
           data: {
@@ -28,14 +31,18 @@ const getOptions = {
         }
       },
       default: {
-        statusCode: {
-          type: 'integer'
-        },
-        error: {
-          type: 'string'
-        },
-        message: {
-          type: 'string'
+        description: 'Error response',
+        type: 'object',
+        properties: {
+          statusCode: {
+            type: 'integer'
+          },
+          error: {
+            type: 'string'
+          },
+          message: {
+            type: 'string'
+          }
         }
       }
     }

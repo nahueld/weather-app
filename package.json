@@ -18,6 +18,7 @@
     "@fastify/autoload": "^5.0.0",
     "@fastify/env": "^4.0.0",
     "@fastify/sensible": "^4.1.0",
+    "@fastify/swagger": "^7.3.0",
     "fastify": "^4.0.0-rc.2",
     "fastify-axios": "^1.2.5",
     "fastify-cli": "^4.0.0",
