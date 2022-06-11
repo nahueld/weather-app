@@ -6,7 +6,6 @@ const fastifyEnv = require('@fastify/env')
 const fasitfyAxios = require('fastify-axios')
 
 module.exports = async function (fastify, opts) {
-
   fastify.register(fasitfyAxios)
 
   const schema = {
@@ -23,6 +22,10 @@ module.exports = async function (fastify, opts) {
       OPEN_WEATHER_URL: {
         type: 'string',
         default: 'https://api.openweathermap.org/data/2.5/onecall'
+      },
+      CACHE_MAX_AGE: {
+        type: 'number',
+        default: 3600
       }
     }
   }
@@ -30,29 +33,24 @@ module.exports = async function (fastify, opts) {
   fastify
     .register(fastifyEnv, { schema })
     .after((err) => {
+      if (err) throw new Error(err)
 
-      if(err) throw new Error(err)
-  
       fastify.register(AutoLoad, {
         dir: path.join(__dirname, 'plugins'),
         options: Object.assign({ ...fastify.config }, opts)
       })
-      .after((err) => {
+        .after((err) => {
+          if (err) throw new Error(err)
 
-        if(err) throw new Error(err)
-
-        fastify.register(AutoLoad, {
-          dir: path.join(__dirname, 'services'),
-          options: Object.assign({ ...fastify.config }, opts)
+          fastify.register(AutoLoad, {
+            dir: path.join(__dirname, 'services'),
+            options: Object.assign({ ...fastify.config }, opts)
+          })
         })
 
-      })
-  
       fastify.register(AutoLoad, {
         dir: path.join(__dirname, 'routes'),
         options: Object.assign({ ...fastify.config }, opts)
       })
-
     })
-
 }

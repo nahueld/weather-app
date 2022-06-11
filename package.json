@@ -22,7 +22,8 @@
     "fastify-axios": "^1.2.5",
     "fastify-cli": "^4.0.0",
     "fastify-plugin": "^3.0.0",
-    "lowdb": "^1.0.0"
+    "lowdb": "^1.0.0",
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {
     "eslint": "^8.17.0",
