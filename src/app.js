@@ -9,15 +9,15 @@ const config = require('../config.json')
 module.exports = async function (fastify, opts) {
   const autoLoad = autoLoadFactory(fastify, opts)
 
-  fastify
+  await fastify
     .register(fasitfyAxios)
     .register(fastifyEnv, { schema: config })
-    .after((err) => {
-      if (err) throw new Error(err)
-      autoLoad('plugins')
-      autoLoad('services')
-      autoLoad('routes')
-    })
+
+  autoLoad('plugins')
+  autoLoad('services')
+  autoLoad('routes')
+
+  return true
 }
 
 function autoLoadFactory (fastify, opts) {
